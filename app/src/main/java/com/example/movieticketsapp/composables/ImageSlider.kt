@@ -55,7 +55,7 @@ fun ImageSlider(imagesList:List<Int> , pagerState:PagerState) {
                 modifier = Modifier
                     .padding(10.dp)
                     .height(360.dp)
-                    .aspectRatio(9 / 16f)
+                    .aspectRatio(11 / 16f)
                     .clip(RoundedCornerShape(16.dp))
                     .graphicsLayer {
                         val pageOffset = (

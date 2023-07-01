@@ -23,7 +23,7 @@ fun BlurImage(imageId:Int){
     val gradient = Brush.verticalGradient(
         colors = listOf(Color.Transparent, Color.Transparent, Color.White),
         startY = imageHeight.toFloat() / 3,
-        endY = imageHeight.toFloat() * 3f
+        endY = imageHeight.toFloat() * 3.5f
     )
     Image(
         painter = painterResource(id = imageId),

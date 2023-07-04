@@ -12,7 +12,7 @@ import com.example.movieticketsapp.ui.theme.PrimaryLight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Chip(title:String, selected:Boolean = false,textColor:Color = Color.Black, OnClick:(()-> Unit)? = null ){
+fun CustomChip(title:String, selected:Boolean = false, textColor:Color = Color.Black, OnClick:(()-> Unit)? = null ){
         FilterChip(
             colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimaryLight ,
                 selectedLabelColor = Color.White ,

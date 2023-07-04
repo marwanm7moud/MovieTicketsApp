@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -34,7 +33,8 @@ import com.example.movieticketsapp.composables.ImageSlider
 import com.example.movieticketsapp.composables.SpacerHorizontal4
 import com.example.movieticketsapp.composables.SpacerVertical16
 import com.example.movieticketsapp.composables.SpacerVertical32
-import com.example.movieticketsapp.composables.Chip
+import com.example.movieticketsapp.composables.CustomChip
+import com.example.movieticketsapp.composables.MovieTime
 import com.example.movieticketsapp.composables.SpacerVertical8
 import com.example.movieticketsapp.ui.theme.PrimaryLight
 
@@ -44,8 +44,7 @@ fun HomeScreen() {
     val images = listOf(R.drawable.movie1, R.drawable.movie2, R.drawable.movie3)
     val pagerState = rememberPagerState(initialPage = 1) { images.size }
 
-    Scaffold(
-        bottomBar = {
+    Scaffold(bottomBar = {
             BottomAppBar(containerColor = Color.Transparent) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceAround,
@@ -89,14 +88,14 @@ fun HomeScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Chip(
+                    CustomChip(
                         title = "Now Showing",
                         selected = true,
                         OnClick = {},
                         textColor = Color.White
                     )
                     SpacerHorizontal4()
-                    Chip(
+                    CustomChip(
                         title = "Coming Soon",
                         selected = false,
                         OnClick = {},
@@ -106,20 +105,7 @@ fun HomeScreen() {
                 SpacerVertical16()
                 ImageSlider(imagesList = images, pagerState = pagerState)
                 SpacerVertical16()
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.baseline_access_time_24),
-                        contentDescription = "Time",
-                        tint = Color.Gray
-                    )
-                    SpacerHorizontal4()
-                    Text(text = "2h 23m")
-
-                }
+               MovieTime(time = "2h 23m" , Modifier.fillMaxWidth())
                 SpacerVertical16()
                 Text(
                     text = "Fantastic Beasts: The Secrets of Dumbledore",
@@ -135,9 +121,9 @@ fun HomeScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Chip(title = "Fantasy", selected = false)
+                    CustomChip(title = "Fantasy", selected = false)
                     SpacerHorizontal4()
-                    Chip(title = "Adventure", selected = false)
+                    CustomChip(title = "Adventure", selected = false)
                 }
             }
         }

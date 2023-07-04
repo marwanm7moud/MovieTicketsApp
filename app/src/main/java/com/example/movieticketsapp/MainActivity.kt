@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.movieticketsapp.screens.HomeScreen
+import com.example.movieticketsapp.screens.MovieDetailsScreen
 import com.example.movieticketsapp.ui.theme.MovieTicketsAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen()
+                    MovieDetailsScreen()
                 }
             }
         }

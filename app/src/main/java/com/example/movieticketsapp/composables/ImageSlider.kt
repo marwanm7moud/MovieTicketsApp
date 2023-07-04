@@ -44,9 +44,12 @@ import kotlin.math.absoluteValue
 fun ImageSlider(imagesList:List<Int> , pagerState:PagerState) {
     HorizontalPager(
         state = pagerState,
+        modifier = Modifier
+            .fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 100.dp)
     ) {
         Box(
-            modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxWidth().wrapContentHeight(), contentAlignment = Alignment.Center,
         ) {
             Image(
                 painter = painterResource(id = imagesList[it]),

@@ -31,6 +31,10 @@ fun SpacerHorizontal16(){
 fun SpacerVertical4(){
     Spacer(modifier = Modifier.height(4.dp))
 }
+@Composable
+fun SpacerVertical14(){
+    Spacer(modifier = Modifier.height(14.dp))
+}
 
 @Composable
 fun SpacerVertical8(){
@@ -40,6 +44,10 @@ fun SpacerVertical8(){
 @Composable
 fun SpacerVertical16(){
     Spacer(modifier = Modifier.height(16.dp))
+}
+@Composable
+fun SpacerVertical24(){
+    Spacer(modifier = Modifier.height(24.dp))
 }
 @Composable
 fun SpacerVertical32(){

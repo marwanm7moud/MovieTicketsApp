@@ -16,3 +16,12 @@ val PrimaryLight = Color(0xFFff5524)
 val PrimaryDark = Color(0xFFff7223)
 
 val ItemBackground = Color(0x33FFFFFF)
+
+val SelectedSeatColor = Color(0xFFFF5524)
+val TakenSeatColor = Color(0xFF3C3C3C)
+val AvailableSeatColor = Color(0xFFFFFFFF)
+
+
+val AllTakenBorder = Color(0x613C3C3C)
+val OneOrMoreAvailable = Color(0xFF3C3C3C)
+val AllSelected = Color(0x99FF5524)

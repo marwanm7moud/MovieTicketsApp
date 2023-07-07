@@ -4,7 +4,6 @@ package com.example.movieticketsapp.screens
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavHostController
 import com.example.movieticketsapp.R
 import com.example.movieticketsapp.composables.BlurImage
 import com.example.movieticketsapp.composables.ImageSlider
@@ -41,7 +41,7 @@ import com.example.movieticketsapp.ui.theme.PrimaryLight
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     val images = listOf(R.drawable.movie1, R.drawable.movie2, R.drawable.movie3)
     val pagerState = rememberPagerState(initialPage = 1) { images.size }
 
@@ -106,7 +106,8 @@ fun HomeScreen() {
                     }
                     SpacerVertical16()
                     ImageSlider(imagesList = images, pagerState = pagerState){
-
+                        if (it==1)
+                            navController.navigate("movieDetails")
                     }
                     SpacerVertical16()
 
@@ -141,10 +142,4 @@ fun HomeScreen() {
     }
 
 
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen()
 }

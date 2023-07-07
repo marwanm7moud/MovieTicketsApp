@@ -2,6 +2,7 @@ package com.example.movieticketsapp.screens.booking_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -32,7 +33,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.movieticketsapp.R
 import com.example.movieticketsapp.composables.CinemaSeat
 import com.example.movieticketsapp.composables.CustomButton
@@ -44,9 +47,10 @@ import com.example.movieticketsapp.ui.theme.AvailableSeatColor
 import com.example.movieticketsapp.ui.theme.ItemBackground
 import com.example.movieticketsapp.ui.theme.SelectedSeatColor
 import com.example.movieticketsapp.ui.theme.TakenSeatColor
+import dagger.hilt.EntryPoint
 
 @Composable
-fun BookingScreen(bookingViewModel: BookingViewModel = viewModel()) {
+fun BookingScreen(bookingViewModel: BookingViewModel = hiltViewModel(), navController: NavHostController) {
     val bookingUiState by bookingViewModel.uiState.collectAsState()
     ConstraintLayout(
         modifier = Modifier
@@ -65,6 +69,8 @@ fun BookingScreen(bookingViewModel: BookingViewModel = viewModel()) {
                 .constrainAs(backButton) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
+                }.clickable{
+                    navController.popBackStack()
                 }
         ) {
             Icon(
@@ -221,11 +227,7 @@ fun BookingScreen(bookingViewModel: BookingViewModel = viewModel()) {
     }
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun BookingScreenPreview() {
-    BookingScreen()
-}
+
 
 data class ItemSeatData(
     val leftSeatData: SeatData,

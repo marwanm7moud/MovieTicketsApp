@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.movieticketsapp.R
+import com.example.movieticketsapp.composables.CustomButton
 import com.example.movieticketsapp.composables.CustomChip
 import com.example.movieticketsapp.composables.MovieTime
 import com.example.movieticketsapp.composables.SpacerHorizontal4
@@ -210,14 +211,8 @@ fun MovieDetailsScreen() {
                     fontFamily = kumbhSans
                 )
                 SpacerVertical16()
-                Button(onClick = { } , colors = ButtonDefaults.buttonColors(containerColor = PrimaryLight , contentColor = Color.White)) {
-                    Icon(painter = painterResource(id = R.drawable.ticket_1), contentDescription ="" )
-                    Text(text = "Booking",
-                        fontSize = 16.sp ,
-                        modifier = Modifier.padding(start = 8.dp),
-                        textAlign = TextAlign.Center,
-                        fontFamily = kumbhSans
-                    )
+                CustomButton( "Booking",iconDrawable = R.drawable.card){
+
                 }
             }
         }

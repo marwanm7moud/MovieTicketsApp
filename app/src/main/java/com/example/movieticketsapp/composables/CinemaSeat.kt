@@ -40,7 +40,7 @@ fun CinemaSeat(leftSeat: SeatData, rightSeatData: SeatData, onSeatAvailableClick
             .roundedRectangleWithoutTheTop(
                 color = roundedBorderColor(
                     leftSeat,
-                    rightSeatData
+                    rightSeat
                 )
             ),
         color = Color.Transparent

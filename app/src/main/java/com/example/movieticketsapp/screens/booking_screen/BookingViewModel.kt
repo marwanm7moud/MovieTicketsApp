@@ -2,7 +2,6 @@ package com.example.movieticketsapp.screens.booking_screen
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -96,6 +95,28 @@ class BookingViewModel @Inject constructor() : ViewModel() {
         _uiState.update { state ->
             state.copy(
                 selectedSeatsId = list
+            )
+        }
+    }
+
+    fun changeSelectedDate(selected: Int) {
+        _uiState.update { state ->
+            state.copy(
+                selectedDate = selected
+            )
+        }
+    }
+    fun changeSelectedTime(selected: String) {
+        _uiState.update { state ->
+            state.copy(
+                selectedTime = selected
+            )
+        }
+    }
+    fun incrementSelectedCount() {
+        _uiState.update { state ->
+            state.copy(
+                selectedSeatsCount = state.selectedSeatsCount++
             )
         }
     }

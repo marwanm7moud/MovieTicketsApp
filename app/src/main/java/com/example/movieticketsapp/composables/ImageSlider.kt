@@ -1,5 +1,6 @@
 package com.example.movieticketsapp.composables
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,6 +26,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +35,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.util.lerp
@@ -41,31 +44,35 @@ import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ImageSlider(imagesList:List<Int> , pagerState:PagerState) {
+fun ImageSlider(imagesList:List<Int> , pagerState:PagerState , onMovieClick:(index:Int)->Unit) {
     HorizontalPager(
         state = pagerState,
         modifier = Modifier
             .fillMaxWidth(),
-        contentPadding = PaddingValues(horizontal = 100.dp)
-    ) {
+        contentPadding = PaddingValues(horizontal = 50.dp)
+    ) {index->
         Box(
-            modifier = Modifier.fillMaxWidth().wrapContentHeight(), contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxWidth().wrapContentHeight().clickable{
+                onMovieClick.invoke(index)
+            }, contentAlignment = Alignment.Center,
         ) {
+            val padding: Dp by animateDpAsState(
+                if (pagerState.currentPage != index) 15.dp else 0.dp
+            )
             Image(
-                painter = painterResource(id = imagesList[it]),
+                painter = painterResource(id = imagesList[index]),
                 contentDescription = "Image",
                 alignment = Alignment.Center,
                 modifier = Modifier
-                    .padding(10.dp)
-                    .height(360.dp)
-                    .aspectRatio(11 / 16f)
+                    .padding(horizontal = padding)
+                    .aspectRatio(263  / 398f)
                     .clip(RoundedCornerShape(16.dp))
                     .graphicsLayer {
+
                         val pageOffset = (
-                                (pagerState.currentPage - it) + pagerState
+                                (pagerState.currentPage - index) + pagerState
                                     .currentPageOffsetFraction
                                 ).absoluteValue
-
                         alpha = lerp(
                             start = 0.5f,
                             stop = 1f,

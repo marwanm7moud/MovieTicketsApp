@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.movieticketsapp.R
 import com.example.movieticketsapp.composables.BlurImage
 import com.example.movieticketsapp.composables.ImageSlider
@@ -80,32 +81,40 @@ fun HomeScreen() {
             }
         }
     ) { padding ->
-        Box(modifier = Modifier.fillMaxSize()) {
-            BlurImage(imageId = images[pagerState.currentPage])
-            Column(modifier = Modifier.fillMaxSize()) {
-                SpacerVertical32()
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    CustomChip(
-                        title = "Now Showing",
-                        selected = true,
-                        OnClick = {},
-                        textColor = Color.White
-                    )
-                    SpacerHorizontal4()
-                    CustomChip(
-                        title = "Coming Soon",
-                        selected = false,
-                        OnClick = {},
-                        textColor = Color.White
-                    )
+        ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+            val (info, playButton) = createRefs()
+                BlurImage(imageId = images[pagerState.currentPage])
+                Column(modifier = Modifier.fillMaxSize()) {
+                    SpacerVertical32()
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        CustomChip(
+                            title = "Now Showing",
+                            selected = true,
+                            OnClick = {},
+                            textColor = Color.White
+                        )
+                        SpacerHorizontal4()
+                        CustomChip(
+                            title = "Coming Soon",
+                            selected = false,
+                            OnClick = {},
+                            textColor = Color.White
+                        )
+                    }
+                    SpacerVertical16()
+                    ImageSlider(imagesList = images, pagerState = pagerState){
+
+                    }
+                    SpacerVertical16()
+
                 }
-                SpacerVertical16()
-                ImageSlider(imagesList = images, pagerState = pagerState)
-                SpacerVertical16()
-               MovieTime(time = "2h 23m" , Modifier.fillMaxWidth())
+            Column(modifier = Modifier.constrainAs(info){
+                bottom.linkTo(parent.bottom)
+            }.padding(padding)) {
+                MovieTime(time = "2h 23m" , Modifier.fillMaxWidth())
                 SpacerVertical16()
                 Text(
                     text = "Fantastic Beasts: The Secrets of Dumbledore",
@@ -126,7 +135,9 @@ fun HomeScreen() {
                     CustomChip(title = "Adventure", selected = false)
                 }
             }
+
         }
+
     }
 
 
